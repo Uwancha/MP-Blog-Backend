@@ -13,11 +13,12 @@ How users can authenticate themselves to access the API endpoints.
 - **Method:** `POST`
 - **Description:** Registers a new user.
 - **Request Body:**
-  ```json
+```json
   {
     "username": "example",
     "password": "password"
-  }```
+  }
+```
 
 - **Responses:**
     - 200 OK - Successfully registered.
@@ -29,11 +30,12 @@ How users can authenticate themselves to access the API endpoints.
 - **Method:** POST
 - **Description:** Authenticates a user.
 - **Request Body:**
-  ```json
+```json
   {
     "username": "example",
     "password": "password"
-  }```
+  }
+```
 
 - **Responses:**
   - 200 OK - Successfully authenticated. Returns JWT token.

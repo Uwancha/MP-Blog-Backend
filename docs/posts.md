@@ -28,12 +28,13 @@
 - **Method:** POST
 - **Description:** Creates a new post.
 - **Request Body:**
-    ```json
+```json
     {
         "title": "Post title",
         "body": "Post body",
         "tags": ["tag1", "tag2"]
-    }```
+    }
+```
 
 - **Responses:**
     - 200 OK - Successfully created the post.
@@ -48,12 +49,13 @@
     - `postId (path)-` ID of the post.
 
 - **Request Body:**
-    ```json
+```json
     {
         "title": "Updated title",
         "body": "Updated body",
         "tags": ["tag1", "tag2"]
-    }```
+    }
+```
 
 - **Responses:**
     - 200 OK - Successfully updated the post.

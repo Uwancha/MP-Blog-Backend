@@ -10,10 +10,11 @@
 - **Parameters:**
     - `postId (path)-` ID of the post the comment belongs to.
 - **Request Body:**
-    ```json
+```json
     {
         "message": "Comment message"
-    }```
+    }
+```
 
 - **Responses:**
     - 200 OK - Successfully created the comment.
@@ -28,10 +29,11 @@
 - **Parameters:**
     - `commentId (path)` - ID of the comment to be updated.
 - **Request Body:**
-    ```json
+```json
     {
         "text": "Updated comment text"
-    }```
+    }
+```
 
 - **Responses:**
     - 200 OK - Successfully updated the comment.

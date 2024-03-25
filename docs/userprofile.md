@@ -24,10 +24,11 @@
   - `userId (path)-` ID of the user.
 
 - **Request Body:**
-  ```json
+```json
   {
     "bio": "New biography"
-  }```
+  }
+```
 
 - **Responses:**
   - 200 OK - Successfully updated user bio.
@@ -43,10 +44,11 @@
 - **Parameters:**
   - `userId (path)-` ID of the user.
 - **Request Body:**
-  ```json
+```json
   {
     "avatar": "URL or file path"
-  }```
+  }
+```
 
 - **Responses:**
   - 200 OK - Successfully updated user avatar.
