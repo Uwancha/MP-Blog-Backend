@@ -44,7 +44,6 @@ JWT_SECRET=<your-jwt-secret>
 - 4. Run the server:
 
 ```bash
-Copy code
 npm start
 ```
 
@@ -52,7 +51,7 @@ npm start
 Please refer to the API documentation provided in the docs folder for details on the available endpoints, request parameters, and responses.
 
 ## Contributors
-[Sitota Alemu-GitHub](https://github.com/Uwancha)
+[Sitota Alemu](https://github.com/Uwancha)
 
 ## License
-This project is licensed under the MIT License(LICENSE).
+This project is licensed under the [MIT License](LICENSE).
