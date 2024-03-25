@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from "express";
 import { CustomRequest } from "../middlewares/authenticateMiddleware";
 import { User } from "../models/userModel";
-import { uploadAvatarToCloudinary } from "../middlewares/uploadAvatar";
+import { uploadAvatarToCloudinary } from "../middlewares/uploadAvatarToCloudinary";
 import { Post } from "../models/postModel";
 
 /**

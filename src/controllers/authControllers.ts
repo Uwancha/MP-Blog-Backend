@@ -2,7 +2,7 @@ import { User } from '../models/userModel';
 import bcrypt from 'bcryptjs';
 import { NextFunction, Request, Response } from 'express';
 import Jwt from 'jsonwebtoken';
-import { ValidateUser } from '../middlewares/validationMiddlewares';
+import { ValidateUser } from '../middlewares/validateMiddlewares';
 
 /**
  * Registers a new user.
