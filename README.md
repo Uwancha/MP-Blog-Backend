@@ -19,7 +19,7 @@ This is the backend for a blog application with authentication functionality. Th
 - Express Validator for request validation
 - bcrypt for password hashing
 
-##Getting Started
+## Getting Started
 To get started with the backend of the blog application, follow these steps:
 
 - 1. Clone the repository:
@@ -33,7 +33,7 @@ To get started with the backend of the blog application, follow these steps:
 cd blog-backend
 npm install
 ```
-- 3.Set up your environment variables:
+- 3. Set up your environment variables:
 
 Create a .env file in the root directory and add the following variables:
 ```plaintext
