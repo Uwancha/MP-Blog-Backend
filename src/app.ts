@@ -8,6 +8,10 @@ import cors from 'cors';
 import createError from 'http-errors';
 import { connect } from './db';
 import { createLogger, format, transports } from 'winston';
+import { AuthRoutes } from './routes/authRoutes';
+import { PostRoutes } from './routes/postRoutes';
+import { CommentRoutes } from './routes/commentRoutes';
+import { ProfileRoutes } from './routes/profileRoutes';
 
 // Define custom error interface to handle errors consistently
 interface Error {
@@ -59,10 +63,11 @@ app.use(limiter);
 // CORS middleware for enabling Cross-Origin Resource Sharing
 app.use(cors())
 
-// Route handler for the root endpoint, this is just for the initial setup
-app.get('/', (req: Request, res: Response, next: NextFunction) => {
-    res.status(200).json({message: 'Hello from MyProff'});
-});
+// Setup routes
+app.use('/api', AuthRoutes);
+app.use('/api', PostRoutes);
+app.use('/api', CommentRoutes);
+app.use('/api', ProfileRoutes);
 
 // Middleware to handle 404 Not Found errors
 app.use((req: Request, res: Response, next: NextFunction) => {
