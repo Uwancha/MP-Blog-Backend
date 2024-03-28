@@ -24,8 +24,9 @@ export const VerifyToken = (req: CustomRequest, res: Response, next: NextFunctio
 
     try {
         // Verify token using JWT secret
+        // Will throw error if token is not verified
         const jwtSecret = process.env.JWTSECRET as string;
-        const decoded :string | Jwt.JwtPayload = Jwt.verify(token, jwtSecret);
+        const decoded = Jwt.verify(token, jwtSecret);
 
         // Attach decoded user information to request object
         req.user = decoded;
