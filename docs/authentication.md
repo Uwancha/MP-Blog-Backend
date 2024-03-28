@@ -21,9 +21,9 @@ How users can authenticate themselves to access the API endpoints.
 ```
 
 - **Responses:**
-    - 200 OK - Successfully registered.
-    - 400 Bad Request - Invalid request body.
-    - 409 Conflict - User with the same username already exists.
+  - 200 OK - Successfully registered.
+  - 400 Bad Request - Invalid request body.
+  - 409 Conflict - User with the same username already exists.
 
 #### Login User
 - **URL:** /api/auth/login

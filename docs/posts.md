@@ -38,7 +38,7 @@
 
 - **Responses:**
     - 200 OK - Successfully created the post.
-    - 400 Bad Request - Invalid request body.
+    - 422 Bad Request - Invalid request body.
 
 ### Update a Post
 

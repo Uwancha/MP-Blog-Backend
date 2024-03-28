@@ -12,7 +12,7 @@
 
 - **Responses:**
   - 200 OK - Successfully retrieved user profile.
-  - 401 Unauthorized - Authentication token missing or invalid.
+  - 401 or 403 Unauthorized - Authentication token missing or invalid.
   - 404 Not Found - User not found.
 
 ### Update User Bio

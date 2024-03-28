@@ -20,6 +20,8 @@
     - 200 OK - Successfully created the comment.
     - 400 Bad Request - Invalid request body.
     - 404 Not Found - Post not found.
+    - 401 or 403 Unauthorized(if no token exists)
+    - 500 Server error
 
 ### Update a Comment
 
@@ -39,7 +41,7 @@
     - 200 OK - Successfully updated the comment.
     - 400 Bad Request - Invalid request body.
     - 404 Not Found - Comment not found.
-    - 403 Forbidden - User not authorized to update the comment.
+    - 403 or 401 Forbidden - User not authorized to update the comment.
 
 ### Delete a Comment
 
