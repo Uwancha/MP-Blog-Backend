@@ -39,7 +39,7 @@ router.get('/posts/:postId', GetAPost);
  * @returns {Error} 404 - Error message if the post not found.
  * @access Private
  */
-router.post('/posts/:userId', VerifyToken, CreatePost);
+router.post('/posts', VerifyToken, CreatePost);
 
 /**
  * Route for updating/editing a post by ID.
@@ -68,7 +68,7 @@ router.put('/posts/:postId', VerifyToken, UpdatePost);
  * @returns {Error} 404 - Error message if the post is not found.
  * @access Private
  */
-router.delete('/posts/:postId/userId', VerifyToken, DeletePost);
+router.delete('/posts/:postId', VerifyToken, DeletePost);
 
 // Export the router instance
 export { router as PostRoutes };

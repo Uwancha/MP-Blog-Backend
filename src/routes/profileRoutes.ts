@@ -15,7 +15,7 @@ const router = Router();
  * @returns {Error} 404 - Error message if the user is not found.
  * @access Private
  */
-router.get('/profile/:userId', VerifyToken, GetUserProfile);
+router.get('/profile', VerifyToken, GetUserProfile);
 
 /**
  * Route for updating user biography by user ID.
@@ -29,7 +29,7 @@ router.get('/profile/:userId', VerifyToken, GetUserProfile);
  * @returns {Error} 404 - Error message if the user is not found.
  * @access Private
  */
-router.put('/profile/:userId/bio', VerifyToken, UpdateUserBio);
+router.put('/profile/bio', VerifyToken, UpdateUserBio);
 
 /**
  * Route for updating user avatar by user ID.
@@ -43,6 +43,6 @@ router.put('/profile/:userId/bio', VerifyToken, UpdateUserBio);
  * @returns {Error} 404 - Error message if the user is not found.
  * @access Private
  */
-router.put('/profile/:userId/avatar', VerifyToken, UpdateUserAvatar);
+router.put('/profile/avatar', VerifyToken, UpdateUserAvatar);
 
 export { router as ProfileRoutes };

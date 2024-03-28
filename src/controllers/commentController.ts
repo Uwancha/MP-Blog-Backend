@@ -15,7 +15,8 @@ export const CreateComment = async (req: CustomRequest, res: Response, next: Nex
         // Extract comment information, postID, and author ID from the request
         const { message } = req.body;
         const postId = req.params.postId;
-        const user = req.params.userId;
+        const userId = typeof req.user === 'string' ? undefined : req.user?.userId;
+
 
         // Ensure post exists to put the comment
         const post = await Post.findById(postId);
@@ -26,7 +27,7 @@ export const CreateComment = async (req: CustomRequest, res: Response, next: Nex
         // Create comment 
         const newComment = await Comment.create({
             message,
-            author: user
+            author: userId
         });
 
         // Push new comment's ID to comments array in the post and save the post
@@ -53,7 +54,9 @@ export const UpdateComment = async (req: CustomRequest, res: Response, next: Nex
         // Extract comment information, postID  and author ID from the request
         const message = req.body.text;
         const commentId = req.params.commentId;
-        const user = req.user;
+        // Extract userId from request object
+        const userId = typeof req.user === 'string' ? undefined : req.user?.userId;
+
 
         // Ensure that comment exists to update
         const commentExists = await Comment.findById(commentId);
@@ -62,7 +65,7 @@ export const UpdateComment = async (req: CustomRequest, res: Response, next: Nex
         };
 
         // Ensure the user is the owner of the post
-        if (commentExists?.author.toString() !== user?.toString()) {
+        if (commentExists?.author.toString() !== userId?.toString()) {
             return res.status(403).json({ message: 'Unauthorized request. Only authors can edit their comments' });
         };
 
@@ -89,11 +92,12 @@ export const DeleteComment = async (req: CustomRequest, res: Response, next: Nex
         // Find a comment by its id 
         const comment = await Comment.findById(req.params.commentId)
         
-        // Extract user from request 
-        const user = req.user;
+        // Extract userId from request object
+        const userId = typeof req.user === 'string' ? undefined : req.user?.userId;
+
 
         // Check if the user is the owner of the post
-        if (comment?.author.toString() !== user?.toString()) {
+        if (comment?.author.toString() !== userId?.toString()) {
             return res.status(403).json({ message: 'Unauthorized request. Only authors can delete their comments' });
         };
 

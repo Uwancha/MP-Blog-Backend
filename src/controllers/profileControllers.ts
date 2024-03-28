@@ -13,7 +13,8 @@ import { Post } from "../models/postModel";
  */
 export const GetUserProfile = async (req: CustomRequest, res: Response, next: NextFunction) => {
     try {
-        const userId = req.params.userId;
+        // Extract userId from request object
+        const userId = typeof req.user === 'string' ? undefined : req.user?.userId;
 
         // Ensure that the user exists
         const user = await User.findById(userId);
@@ -41,7 +42,8 @@ export const UpdateUserBio = async (req: CustomRequest, res: Response, next: Nex
     try {
         // Extract user information and user ID from the request
         const { bio } = req.body;
-        const userId = req.params.userId;
+        const userId = typeof req.user === 'string' ? undefined : req.user?.userId;
+
 
         // Ensure that the user exists
         const user = await User.findById(userId);
@@ -70,7 +72,7 @@ export const UpdateUserAvatar = async (req: CustomRequest, res: Response, next: 
     try {
         // Extract user information and user ID from the request
         const { avatar } = req.body;
-        const userId = req.params.userId;
+        const userId = typeof req.user === 'string' ? undefined : req.user?.userId;
 
         // Ensure that the user exists
         const user = await User.findById(userId);
@@ -79,10 +81,10 @@ export const UpdateUserAvatar = async (req: CustomRequest, res: Response, next: 
         };
         
         // Upload avatar to cloudinary
-        //const result = await uploadAvatarToCloudinary(avatar);
+        const result = await uploadAvatarToCloudinary(avatar);
 
         // Update user's avatar URL
-        //const updatedProfile = await User.findByIdAndUpdate(userId, { profile: { avatar: result.secure_url } }, { new: true });
+        const updatedProfile = await User.findByIdAndUpdate(userId, { profile: { avatar: result.secure_url } }, { new: true });
 
         // Return success message with the updated user profile
         return res.status(200).json({message: 'Profile updated successfully', data: user});
