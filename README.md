@@ -30,7 +30,6 @@ To get started with the backend of the blog application, follow these steps:
 - 2. Install dependencies:
 
 ```bash
-cd blog-backend
 npm install
 ```
 - 3. Set up your environment variables:
@@ -49,6 +48,10 @@ npm start
 
 ## API Documentation
 Please refer to the API documentation provided in the docs folder for details on the available endpoints, request parameters, and responses.
+
+## Contributing
+
+Contributions are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request.
 
 ## Contributors
 [Sitota Alemu](https://github.com/Uwancha)
