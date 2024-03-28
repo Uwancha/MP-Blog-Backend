@@ -69,7 +69,7 @@ Description: This controller creates a new post.
         -Response Body: JSON object containing the newly created post
 
 - Error Handling:
-    - Status Code: 400 Bad Request (if request body is invalid)
+    - Status Code: 422 Bad Request (if request body is invalid)
 
     - Status Code: 500 Internal Server Error (for database or server-related errors)
 
@@ -100,6 +100,10 @@ Description: This controller updates an existing post.
 - Error Handling:
     - Status Code: 404 Not Found (if no post is found with the specified ID)
 
+    - Status Code: 422 Invalid inputs
+
+    - Status Code: 401 Unauthorized(if no token exists)
+
     - Status Code: 403 Forbidden (if the authenticated user is not the owner of the post)
 
     - Status Code: 500 Internal Server Error (for database or server-related errors)
@@ -122,6 +126,8 @@ Description: This controller deletes a post by its ID.
 
 - Error Handling:
     - Status Code: 404 Not Found (if no post is found with the specified ID)
+
+    - Status Code: 401 Unauthorized(if no token exists)
 
     - Status Code: 403 Forbidden (if the authenticated user is not the owner of the post)
 

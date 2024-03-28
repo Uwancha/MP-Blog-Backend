@@ -26,4 +26,6 @@ Authenticates a user and generates a JWT token.
   - `password` (String): The password of the user.
 - Response:
   - Success: 200 OK with JWT token and user data.
-  - Failure: 401 Unauthorized with error message.
+  - Failure:
+    - 404 Not found error message.
+    - 401 Unauthorized with error message.
