@@ -16,7 +16,7 @@ const router = Router();
  * @returns {Error} 403 - Error message if the user is not authorized to create the comment
  * @access Private
  */
-router.post('/comments/:postId', VerifyToken, CreateComment);
+router.post('/comments/:postId/:userId', VerifyToken, CreateComment);
 
 /**
  * Route for updating/editing a comment by ID.
