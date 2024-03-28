@@ -61,7 +61,9 @@ const limiter = rateLimit({
 app.use(limiter);
 
 // CORS middleware for enabling Cross-Origin Resource Sharing
-app.use(cors())
+app.use(cors({
+    origin: 'https://mpblogfrontend.netlify.app'
+}))
 
 // Setup routes
 app.use('/api', AuthRoutes);
