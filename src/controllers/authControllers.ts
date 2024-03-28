@@ -20,9 +20,10 @@ export const RegisterUser = async (req: Request, res: Response, next: NextFuncti
         const { username, password } = req.body;
 
         // Check if user with the same username already exists
-        const userExists = await User.findOne({username});
+        const userExists = await User.findOne({ username });
+
         if (userExists) {
-            return res.status(400).json({message: "User already exists with this user name"});
+            return res.status(409).json({message: "User already exists with this user name", userExists});
         };
 
         // Hash the password before storing
@@ -35,7 +36,7 @@ export const RegisterUser = async (req: Request, res: Response, next: NextFuncti
         });
 
         // Return success response
-        res.json({message: "User registered successfully", user});
+        return res.status(200).json({message: "User registered successfully", user});
     } catch (error) {
         // Forward error to the error handling middleware
         return next(error);
@@ -66,10 +67,10 @@ export const LoginUser = async (req: Request, res: Response, next: NextFunction)
         // Check if the password is correct
         const passwordValid = await bcrypt.compare(password, user.password);
         if (!passwordValid) {
-            return res.status(400).json({message: "Incorrect password"});
+            return res.status(401).json({message: "Incorrect password"});
         };
 
-        // Generate JWT token
+        // Generate JWT token with default HS256 algorithm
         const jwtSecret = process.env.JWTSECRET as string;
         const token = Jwt.sign({ userId: user.id }, jwtSecret, { expiresIn: '1h' });
          

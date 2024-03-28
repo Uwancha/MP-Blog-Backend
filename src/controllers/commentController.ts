@@ -15,10 +15,10 @@ export const CreateComment = async (req: CustomRequest, res: Response, next: Nex
         // Extract comment information, postID, and author ID from the request
         const { message } = req.body;
         const postId = req.params.postId;
-        const user = req.user;
+        const user = req.params.userId;
 
         // Ensure post exists to put the comment
-        const post = Post.findById(postId);
+        const post = await Post.findById(postId);
         if (!post) {
             return res.status(422).json({message: "Post not found"});
         };
@@ -26,10 +26,13 @@ export const CreateComment = async (req: CustomRequest, res: Response, next: Nex
         // Create comment 
         const newComment = await Comment.create({
             message,
-            post: postId,
             author: user
         });
 
+        // Push new comment's ID to comments array in the post and save the post
+        post.comments?.push(newComment._id);
+        await post.save();
+        
         // Return new created comment along with a success message
         return res.status(200).json({message: "Comment created successfully", data: newComment});
     } catch (error) {

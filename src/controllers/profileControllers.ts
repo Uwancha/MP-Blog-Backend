@@ -24,7 +24,7 @@ export const GetUserProfile = async (req: CustomRequest, res: Response, next: Ne
         // Get posts where the user is an author
         const userposts = await Post.find({ author: userId });
 
-        return res.status(200).json({data: { user, userposts}});
+        return res.status(200).json({data: { user: { username: user.username, bio: user.profile?.bio }, userposts}});
     } catch (error) {
         next(error);
     };
@@ -79,13 +79,13 @@ export const UpdateUserAvatar = async (req: CustomRequest, res: Response, next: 
         };
         
         // Upload avatar to cloudinary
-        const result = await uploadAvatarToCloudinary(avatar);
+        //const result = await uploadAvatarToCloudinary(avatar);
 
         // Update user's avatar URL
-        const updatedProfile = await User.findByIdAndUpdate(userId, { profile: { avatar: result.secure_url } }, { new: true });
+        //const updatedProfile = await User.findByIdAndUpdate(userId, { profile: { avatar: result.secure_url } }, { new: true });
 
         // Return success message with the updated user profile
-        return res.status(200).json({message: 'Profile updated successfully', data: updatedProfile});
+        return res.status(200).json({message: 'Profile updated successfully', data: user});
     } catch (error) {
         // Pass the error to the error handling middleware
         return next(error);

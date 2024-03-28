@@ -1,6 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
 import { Post } from '../models/postModel';
 import { CustomRequest } from '../middlewares/authenticateMiddleware';
+import path from 'path';
 
 /**
  * Fetches all posts from the database.
@@ -12,7 +13,7 @@ import { CustomRequest } from '../middlewares/authenticateMiddleware';
 export const GetAllPosts = async (req: Request, res: Response, next: NextFunction) => {
     try {
         // Retrieve all posts from the database
-        const allPosts = await Post.find().populate({path: 'user', select: 'username'}).sort({createdAt: -1});
+        const allPosts = await Post.find().populate({path: 'author', select: 'username profile'}).sort({createdAt: -1});
 
         // Check if no post exists
         if (!allPosts.length) {
@@ -36,11 +37,12 @@ export const GetAllPosts = async (req: Request, res: Response, next: NextFunctio
  */
 export const GetAPost = async (req: Request, res: Response, next: NextFunction) => {
     try {
+        console.log('post id',req.params.postId)
         // Fetch the post by ID, populating the author's details
         const post = await Post.findById(req.params.postId)
             .populate({
-                path: 'user',
-                select: 'username about work'
+                path: 'author',
+                select: 'username profile'
             });
 
         // Check if no post exists with the given post id
@@ -50,7 +52,7 @@ export const GetAPost = async (req: Request, res: Response, next: NextFunction) 
 
         // Populate comments only if the post has comments
         if (post?.comments && post.comments.length > 0) {
-            await post.populate({path : 'comments'});
+            await post.populate({path : 'comments', populate: { path: 'author', select: 'username profile' } } );
         };
 
         // Return the retrieved post
@@ -72,7 +74,7 @@ export const CreatePost = async (req: CustomRequest, res: Response, next: NextFu
     try {
         // Extract post information and author ID from the request
         const { title, body, tags } = req.body;
-        const userId = req.user;
+        const userId = req.params.userId;
 
         // Create a new post
         const newPost = await Post.create({
@@ -101,7 +103,7 @@ export const UpdatePost = async (req: CustomRequest, res: Response, next: NextFu
     try {
         // Extract post ID and updated information from the request
         const postId = req.params.postId;
-        const userId = req.user;
+        const userId = req.params.userId;
         const { title, body, tags } = req.body;
     
         // Find the post by its ID
@@ -146,7 +148,7 @@ export const DeletePost = async (req: CustomRequest, res: Response, next: NextFu
         };
         
         // Extract user id 
-        const userId = req.user;
+        const userId = req.params.userId;
 
         // Check if the authenticated user is the owner of the post
         if (post?.author.toString() !== userId?.toString()) {
