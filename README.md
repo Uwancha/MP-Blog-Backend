@@ -33,6 +33,8 @@ To get started with the backend of the blog application, follow these steps:
 ```bash
 npm install
 ```
+- **Alternatively:** you can download the zip file, extract it and follow the next steps.
+
 - Set up your environment variables:
 
 Create a .env file in the root directory and add the following variables:
