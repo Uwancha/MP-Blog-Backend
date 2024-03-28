@@ -28,7 +28,7 @@ const CommentSchema = new Schema<IComment>(
 );
 
 // Create the Comment model using the CommentSchema
-const Comment = model<IComment>('comment', CommentSchema);
+const Comment = model<IComment>('Comment', CommentSchema);
 
 // Export the Comment model
 export { Comment };
