@@ -14,25 +14,26 @@ This is the backend for a blog application with authentication functionality. Th
 ## Technologies Used
 - Node.js
 - Express.js
+- TypeScript
 - MongoDB/Mongoose
 - JSON Web Tokens (JWT) for authentication
 - Express Validator for request validation
-- bcrypt for password hashing
+- bcryptjs for password hashing
 
 ## Getting Started
 To get started with the backend of the blog application, follow these steps:
 
-- 1. Clone the repository:
+- Clone the repository:
 ```bash
     git clone <repository-url>
 ```
 
-- 2. Install dependencies:
+- Install dependencies:
 
 ```bash
 npm install
 ```
-- 3. Set up your environment variables:
+- Set up your environment variables:
 
 Create a .env file in the root directory and add the following variables:
 ```plaintext
@@ -40,10 +41,16 @@ PORT=3000
 MONGODB_URI=<your-mongodb-uri>
 JWT_SECRET=<your-jwt-secret>
 ```
-- 4. Run the server:
+Since I used cloudinary for user profile images, you should set up environment variables for profile avatar updating endpoints to be functional. You can create free cloudinary account (here)[https://cloudinary.com/users/register_free]
+```plaintext
+CLOUDINARY_CLOUD_NAME=<your-cloudinary's-cloud-name>
+CLOUDINARY_API_KEY=<your-cloudinary's-api-key>
+CLOUDINARY_API_SECRET=<your-cloudinary's-api-secret>
+```
+- 4. Run the development server:
 
 ```bash
-npm start
+npm run dev
 ```
 
 ## API Documentation
