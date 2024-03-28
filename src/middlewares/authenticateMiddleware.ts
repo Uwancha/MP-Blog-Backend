@@ -3,7 +3,7 @@ import { Request, Response, NextFunction } from 'express';
 
 // Define a custom interface that extends express Request
 export interface CustomRequest extends Request {
-    user?: string  | JwtPayload;
+    user?: JwtPayload | string;
 }
 
 /**
@@ -34,6 +34,15 @@ export const VerifyToken = (req: CustomRequest, res: Response, next: NextFunctio
         // Call next middleware
         return next();
     } catch (error) {
-        return res.status(403).json({ message: "Invalid or expired token" });
+        if (error instanceof Jwt.JsonWebTokenError) {
+            // Token is invalid or malformed
+            return res.status(403).json({ message: "Invalid token" });
+        } else if (error instanceof Jwt.TokenExpiredError) {
+            // Token has expired
+            return res.status(403).json({ message: "Token has expired" });
+        } else {
+            // Other errors
+            return res.status(500).json({ message: "Internal server error" });
+        }
     };
 };
