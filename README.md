@@ -43,7 +43,7 @@ PORT=3000
 MONGODB_URI=<your-mongodb-uri>
 JWT_SECRET=<your-jwt-secret>
 ```
-Since I used cloudinary for user profile images, you should set up environment variables for profile avatar updating endpoints to be functional. You can create free cloudinary account (here)[https://cloudinary.com/users/register_free]
+Since I used cloudinary for user profile images, you should set up environment variables for profile avatar updating endpoints to be functional. You can create free cloudinary account [here](https://cloudinary.com/users/register_free)
 ```plaintext
 CLOUDINARY_CLOUD_NAME=<your-cloudinary's-cloud-name>
 CLOUDINARY_API_KEY=<your-cloudinary's-api-key>
