@@ -22,7 +22,7 @@ export const ValidateUser = [
         .withMessage("Password must be at least 8 charcters"),
 
     // Handle validation errors
-    async (req: Request, res: Response, next: NewableFunction) => { 
+    async (req: Request, res: Response, next: NextFunction) => { 
         const errors = validationResult(req);
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
